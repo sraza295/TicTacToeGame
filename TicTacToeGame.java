@@ -74,7 +74,7 @@ public class TicTacToeGame
 					x=2;
 					y=2;
 				}
-				else if(input_position>9)
+				else
 				{
 					x=3;
 					y=3;
