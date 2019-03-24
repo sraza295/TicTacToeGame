@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -8,6 +9,7 @@ public class TicTacToeGame
 		TicTacToe ttc = new TicTacToe();
 		Scanner s = new Scanner(System.in);
 		int x=0,y=0; // these variable is used for enter the position of array by HUMAN
+		int input_position=0;
 		int m=0, n=0;
 		do
 		{	
@@ -15,9 +17,71 @@ public class TicTacToeGame
 			{
 				//When human's turn, then come to this part
 				System.out.println("Your Turn"); // It will print human's turn
-				System.out.println("Enter x and y places"); // we ask for enter x & y position [x][y]
-				x=s.nextInt();
-				y=s.nextInt();			
+				System.out.println("Enter your position(1-9)"); // we ask for enter x & y position [x][y]
+				try
+				{
+					input_position=s.nextInt();
+				}
+				catch (InputMismatchException e) 
+				{
+					x=3;
+					y=3;
+					s.next();
+				}
+				
+				if(input_position==1)
+				{
+					x=0;
+					y=0;
+				}
+				else if(input_position==2)
+				{
+					x=0;
+					y=1;
+				}
+				else if(input_position==3)
+				{
+					x=0;
+					y=2;
+				}
+				else if(input_position==4)
+				{
+					x=1;
+					y=0;
+				}
+				else if(input_position==5)
+				{
+					x=1;
+					y=1;
+				}
+				else if(input_position==6)
+				{
+					x=1;
+					y=2;
+				}
+				else if(input_position==7)
+				{
+					x=2;
+					y=0;
+				}
+				else if(input_position==8)
+				{
+					x=2;
+					y=1;
+				}
+				else if(input_position==9)
+				{
+					x=2;
+					y=2;
+				}
+				else if(input_position>9)
+				{
+					x=3;
+					y=3;
+				}
+					
+				/*x=s.nextInt();
+				y=s.nextInt();	*/		
 				ttc.putPosition(x, y); // This method is used for assigning the position
 				System.out.println(ttc.boardDesign());
 				ttc.checkWinner();
@@ -51,7 +115,7 @@ class TicTacToe
 	static {
 		// From this, it will decide which turn will be first either human or machine.
 		Random random = new  Random();
-		 c= random.nextBoolean() ? X : O; 
+		 c= random.nextBoolean() ? X : O;
 	}
 	public int player = c;
 	private int[][] arr_board = new int[3][3]; // Take 2d Array for Tic-Tac-Toe Board
